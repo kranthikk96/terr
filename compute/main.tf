@@ -1,11 +1,10 @@
 # --- compute/main.tf ---
-
-data "aws_ami" "linux" {
+data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
   filter {
@@ -13,31 +12,16 @@ data "aws_ami" "linux" {
     values = ["hvm"]
   }
 
-  owners = ["amazon"]
+  owners = ["099720109477"] # Canonical
 }
 
-resource "aws_launch_template" "web" {
-  name_prefix            = "web"
-  image_id               = data.aws_ami.linux.id
-  instance_type          = var.web_instance_type
-  vpc_security_group_ids = [var.web_sg]
-  user_data              = filebase64("install_apache.sh")
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  count         = var.instance_count
 
   tags = {
-    Name = "web"
-  }
-}
-
-resource "aws_autoscaling_group" "web" {
-  name                = "web"
-  vpc_zone_identifier = tolist(var.public_subnet)
-  min_size            = 2
-  max_size            = 3
-  desired_capacity    = 2
-
-  launch_template {
-    id      = aws_launch_template.web.id
-    version = "$Latest"
+    Name  = element(var.instance_tags, count.index)
   }
 }
 
