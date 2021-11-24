@@ -3,34 +3,34 @@ resource "aws_cloudformation_stack" "network" {
 
   parameters = {
     VPCCidr = "10.0.0.0/16"
-    InstanceCount:
-     Description: Number of EC2 instances (must be between 1 and 10).
-     Type: Number
-     Default: 1
-     MinValue: 1
-     MaxValue: 10
-     ConstraintDescription: Must be a number between 1 and 10.
-   ImageId:
-     Description: Image ID to launch EC2 instances.
-     Type: AWS::EC2::Image::Id
-     # amzn-ami-hvm-2016.09.1.20161221-x86_64-gp2
-     Default: ami-9be6f38c
-   InstanceType:
+  InstanceCount:
+    Description: Number of EC2 instances (must be between 1 and 5).
+    Type: Number
+    Default: 1
+    MinValue: 1
+    MaxValue: 5
+    ConstraintDescription: Must be a number between 1 and 5.
+  ImageId:
+    Description: Image ID to launch EC2 instances.
+    Type: AWS::EC2::Image::Id
+    # amzn-ami-hvm-2016.09.1.20161221-x86_64-gp2
+    Default: ami-9be6f38c
+  InstanceType:
     Description: Instance type to launch EC2 instances.
     Type: String
     Default: m3.medium
-    AllowedValues: [ t2.micro ]
-  Conditions:
-    Launch1: !Equals [1, 1]
-    Launch2: !Not [!Equals [1, !Ref InstanceCount]]
-    Launch3: !And
-    - !Not [!Equals [1, !Ref InstanceCount]]
-    - !Not [!Equals [2, !Ref InstanceCount]]
-    Launch4: !Or
-    - !Equals [4, !Ref InstanceCount]
-    - !Equals [5, !Ref InstanceCount]
-   Launch5: !Equals [5, !Ref InstanceCount]
- Resources:
+    AllowedValues: [ m3.medium, m3.large, m3.xlarge, m3.2xlarge ]
+Conditions:
+  Launch1: !Equals [1, 1]
+  Launch2: !Not [!Equals [1, !Ref InstanceCount]]
+  Launch3: !And
+  - !Not [!Equals [1, !Ref InstanceCount]]
+  - !Not [!Equals [2, !Ref InstanceCount]]
+  Launch4: !Or
+  - !Equals [4, !Ref InstanceCount]
+  - !Equals [5, !Ref InstanceCount]
+  Launch5: !Equals [5, !Ref InstanceCount]
+Resources:
   Instance1:
     Condition: Launch1
     Type: AWS::EC2::Instance
