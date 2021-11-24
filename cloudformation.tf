@@ -1,7 +1,7 @@
 resource "aws_cloudformation_stack" "network" {
   name = "networking-stack"
 
-  parameters : {
+  parameters:
     InstanceCount:
       Description: Number of EC2 instances (must be between 1 and 5)
       Type: Number
@@ -60,7 +60,7 @@ resource "aws_cloudformation_stack" "network" {
      Properties:
        ImageId: !Ref ImageId
        InstanceType: !Ref InstanceType
-  }
+  
 
   template_body = <<STACK
 {
