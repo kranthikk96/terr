@@ -2,9 +2,8 @@ resource "aws_cloudformation_stack" "network" {
   name = "networking-stack"
 
   parameters = {
-    VPCCidr = "10.0.0.0/16"
     InstanceCount:
-      Description: Number of EC2 instances (must be between 1 and 5).
+      Description: Number of EC2 instances (must be between 1 and 5)
       Type: Number
       Default: 1
       MinValue: 1
@@ -18,8 +17,8 @@ resource "aws_cloudformation_stack" "network" {
     InstanceType:
       Description: Instance type to launch EC2 instances.
       Type: String
-      Default: m3.medium
-      AllowedValues: [ m3.medium, m3.large, m3.xlarge, m3.2xlarge ]
+      Default: t2.micro
+      AllowedValues: [ t2.micro,m3.medium, m3.large, m3.xlarge, m3.2xlarge ]
   Conditions:
     Launch1: !Equals [1, 1]
     Launch2: !Not [!Equals [1, !Ref InstanceCount]]
@@ -30,7 +29,7 @@ resource "aws_cloudformation_stack" "network" {
     - !Equals [4, !Ref InstanceCount]
     - !Equals [5, !Ref InstanceCount]
     Launch5: !Equals [5, !Ref InstanceCount]
- Resources:
+  Resources:
     Instance1:
       Condition: Launch1
       Type: AWS::EC2::Instance
