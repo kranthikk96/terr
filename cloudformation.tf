@@ -3,16 +3,6 @@ resource "aws_cloudformation_stack" "network" {
 
  parameters = {
     VPCCidr = "10.0.0.0/16"
-    ImageId:
-    Description: Image ID to launch EC2 instances.
-    Type: AWS::EC2::Image::Id
-    # amzn-ami-hvm-2016.09.1.20161221-x86_64-gp2
-    Default: ami-9be6f38c
-  InstanceType:
-    Description: Instance type to launch EC2 instances.
-    Type: String
-    Default: m3.medium
-    AllowedValues: [ m3.medium, m3.large, m3.xlarge, m3.2xlarge ]
   }
 
   template_body = <<STACK
