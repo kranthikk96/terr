@@ -20,7 +20,7 @@ resource "aws_cloudformation_stack" "network" {
       "Properties" : {
         "CidrBlock" : { "Ref" : "VPCCidr" },
         "Tags" : [
-          { "Key": "Name", "Value": "Primary_CF_VPC" }
+          { "Key" : "Name", "Value" : "Primary_CF_VPC" }
         ]
    "Resources" : {
      "Web1" : {
@@ -32,7 +32,7 @@ resource "aws_cloudformation_stack" "network" {
 	     { "Ref" : "web_sg" }
 	  ],
 	  "Tags" : [
-	    { "Key": "Name", "Value": "Primary_CF_EC2" }
+	    { "Key" : "Name", "Value" : "Primary_CF_EC2" }
 	  ]
 	  }
 	}
