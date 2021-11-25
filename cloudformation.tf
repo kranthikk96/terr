@@ -25,14 +25,14 @@ resource "aws_cloudformation_stack" "network" {
    "Resources" : {
      "Web1" : {
 	"Type": "AWS::EC2::Instance",
-	"Properties": {
-	  "ImageId": "ami-083654bd07b5da81d", 
-	  "InstanceType": "t2.micro", 
-	  "SecurityGroups": [
-	     {"Ref": "web_sg"}
+	"Properties" : {
+	  "ImageId" : "ami-083654bd07b5da81d", 
+	  "InstanceType" : "t2.micro", 
+	  "SecurityGroups" : [
+	     {"Ref" : "web_sg"}
 	  ],
-	  "Tags": [
-	    {"Key": "name", "Value": "Primary_CF_EC2"}
+	  "Tags" : [
+	    {"Key": "Name", "Value": "Primary_CF_EC2"}
 	  ]
 	  }
 	}     
