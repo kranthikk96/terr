@@ -23,29 +23,20 @@ resource "aws_cloudformation_stack" "network" {
           {"Key": "Name", "Value": "Primary_CF_VPC"}
         ]
    "Resources" : {
-		"Web1" : 
-		{
-			"Type":"AWS::EC2::Instance",
-			"Properties":
-			{
-				"ImageId":"ami-08111162", 
-				"InstanceType":"t2.micro", 
-				"SecurityGroups":
-				[
-					{
-						"Ref":"WebSecuirtyGroup"
-					}
-				], 
-				"KeyName":"devopstest",
-				"Tags": 
-				[
-					{
-						"Key":"Dev",
-						"Value":"Dev"
-					}
-				]
-			}
-		}     
+     "Web1" : {
+	"Type":"AWS::EC2::Instance",
+	"Properties": {
+	  "ImageId":"ami-083654bd07b5da81d", 
+	  "InstanceType":"t2.micro", 
+	  "SecurityGroups":[
+	     {"Ref":"WebSecuirtyGroup"}
+	  ], 
+	  "KeyName":"111",
+	  "Tags": [
+	    {"Key":"Dev", "Value":"Dev"}
+	  ]
+	  }
+	}     
       }
     }
   }
