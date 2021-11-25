@@ -35,7 +35,8 @@ resource "aws_cloudformation_stack" "network" {
 	    {"Key": "Name", "Value": "Primary_CF_EC2"}
 	  ]
 	  }
-	}     
+	}
+       }
       }
     }
   }
