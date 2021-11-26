@@ -42,7 +42,12 @@ resource "aws_cloudformation_stack" "network" {
         "Tags" : [
           { "Key" : "Name", "Value" : "Primary_CF_VPC" }
         ]
-  Resources:
+    }
+  }
+}
+STACK
+}
+ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
@@ -74,8 +79,3 @@ Outputs:
     Value: !GetAtt [EC2Instance, PublicIp] 
        
       }
-    }
-  }
-}
-STACK
-}
