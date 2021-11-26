@@ -4,7 +4,7 @@ resource "aws_cloudformation_stack" "network" {
  parameters = {
     VPCCidr = "10.0.0.0/16"
   }
- Parameters:
+ Parameters = {
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: AWS::EC2::KeyPair::KeyName
@@ -23,6 +23,7 @@ resource "aws_cloudformation_stack" "network" {
       i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge,
       d2.xlarge, d2.2xlarge, d2.4xlarge, d2.8xlarge]
     ConstraintDescription: must be a valid EC2 instance type.
+   }
 
   template_body = <<STACK
 {
