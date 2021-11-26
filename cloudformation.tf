@@ -5,15 +5,15 @@ resource "aws_cloudformation_stack" "network" {
     VPCCidr = "10.0.0.0/16"
   }
  Parameters = {
-  KeyName:
-    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+  KeyName :
+    Description : Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: AWS::EC2::KeyPair::KeyName
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
     Default: t2.micro
-    AllowedValues: [t2.nano, t2.micro, t2.small, t2.medium, t2.large, t2.xlarge, t2.2xlarge,
+    AllowedValues : [t2.nano, t2.micro, t2.small, t2.medium, t2.large, t2.xlarge, t2.2xlarge,
       t3.nano, t3.micro, t3.small, t3.medium, t3.large, t3.xlarge, t3.2xlarge,
       m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge,
       m5.large, m5.xlarge, m5.2xlarge, m5.4xlarge,
