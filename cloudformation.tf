@@ -4,7 +4,7 @@ resource "aws_cloudformation_stack" "network" {
  parameters = {
     VPCCidr = "10.0.0.0/16"
   }
-Parameters:
+ Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: AWS::EC2::KeyPair::KeyName
